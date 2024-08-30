@@ -11,7 +11,9 @@ struct HabitDetailView: View {
     @Environment(\.colorScheme) private var colorScheme
     
     let habit: Habit
-    
+
+    @State private var detailFont: Font = .subheadline
+
     var body: some View {
         VStack {
             Image(systemName: habit.symbolName)
@@ -33,7 +35,18 @@ struct HabitDetailView: View {
             
             Spacer()
         }
+        .frame(maxWidth: .infinity)
         .padding()
+        .background {
+            MeshGradientView()
+                .overlay(Material.regular, in: .rect)
+        }
+        .onAppear {
+            withAnimation(.bouncy(duration: 0.6).delay(0.2)) {
+                detailFont = .headline
+            }
+        }
+        .ignoresSafeArea()
     }
 }
 

@@ -18,11 +18,13 @@ struct HabitColumn: View {
             HStack(spacing: 0) {
                 VStack(alignment: .leading) {
                     Text(habit.name)
-                        .font(.headline)
+                        .font(.body)
                     
                     Text(habit.streakText)
                         .font(.caption)
                         .monospacedDigit()
+                        .contentTransition(.numericText(value: Double(habit.streakCount)))
+                        .animation(.bouncy(duration: 2), value: habit.streakCount)
                 }
                 
                 Spacer(minLength: 0)

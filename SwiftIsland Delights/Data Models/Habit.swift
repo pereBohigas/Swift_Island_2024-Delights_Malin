@@ -9,7 +9,8 @@ import SwiftUI
 
 struct Habit: Identifiable {
     let id: UUID = UUID()
-    
+
+    let animation: any SymbolEffect
     let name: String
     let symbolName: String
     var completedAt: [Date]
@@ -146,4 +147,14 @@ extension Habit {
         ]),
         Habit(name: "Skate", symbolName: HabitSymbol.skateboard.rawValue, completedAt: [])
     ]
+}
+
+enum HabitAnimation {
+    typealias RawValue = SymbolEffect
+
+    case first: .bouncy
+}
+
+extension SymbolEffect: RawRepresentable {
+
 }
